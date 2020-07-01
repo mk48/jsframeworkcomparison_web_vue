@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Dashboard</h1>
-    <hr />
     <div class="companyBox">
       <Company v-for="company in companies" :key="company.id" v-bind:name="company.name" v-bind:stock="company.stock" />
     </div>
@@ -18,9 +17,6 @@ export default {
   name: "Dashboard",
   components: {
     Company,
-  },
-  props: {
-    msg: String,
   },
   data() {
     return {
@@ -44,7 +40,7 @@ export default {
     });
   },
   beforeDestroy() {
-    //this.sockets.unsubscribe("newStockValues");
+    socket.close();
   },
   methods: {
     async getName() {
